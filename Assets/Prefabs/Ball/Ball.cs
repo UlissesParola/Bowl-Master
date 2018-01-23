@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    public float Force;
+    public Vector3 Force;
 
     private Rigidbody _ballRigidbody;
     private AudioSource _audioSource;
@@ -14,23 +14,16 @@ public class Ball : MonoBehaviour {
         _audioSource = GetComponent<AudioSource>();
         _ballRigidbody = GetComponent<Rigidbody>();
 
-        Launch();
+        _ballRigidbody.useGravity = false;
+
+        //Launch(Force);
     }
 
-    private void Launch()
+    public void Launch(Vector3 force)
     {
-        Vector3 newForce = new Vector3(0f, 0f, Force);
-        _ballRigidbody.AddForce(newForce, ForceMode.Impulse);
+        _ballRigidbody.useGravity = true;
+        _ballRigidbody.AddForce(force, ForceMode.Impulse);
         _audioSource.Play();
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
 }
