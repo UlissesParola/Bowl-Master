@@ -25,11 +25,20 @@ public class DragLaunch : MonoBehaviour {
         float dragDuration = (Time.time - startTime);
         Vector3 endMousePosition = (Input.mousePosition - startMousePosition);
 
-        float launchForceZ = (endMousePosition.y / dragDuration) / 10;
+        float launchForceZ = (endMousePosition.y / dragDuration) / 12;
         float launchForceX = endMousePosition.x / 50;
 
         Vector3 launchForce = new Vector3(launchForceX, 0, Mathf.Clamp(launchForceZ, 0, 180));
 
         ball.Launch(launchForce);
     }
+
+    public void MoveStart(float xNudge)
+    {
+        //Vector3 newBallPosition = new Vector3(xNudge, 0, 0);
+        //ball.transform.position += newBallPosition;
+
+        ball.transform.Translate(new Vector3(xNudge, 0, 0));
+    }
+
 }
