@@ -35,10 +35,14 @@ public class DragLaunch : MonoBehaviour {
 
     public void MoveStart(float xNudge)
     {
-        //Vector3 newBallPosition = new Vector3(xNudge, 0, 0);
-        //ball.transform.position += newBallPosition;
 
-        ball.transform.Translate(new Vector3(xNudge, 0, 0));
+        if (!ball.Launched)
+        {
+            float newX = xNudge + ball.transform.position.x;    
+            ball.transform.position = new Vector3(Mathf.Clamp(newX, -0.5f, 0.5f), transform.position.y, transform.position.z);
+            //ball.transform.Translate(new Vector3(Mathf.Clamp(xNudge, -0.5f, 0.5f), 0, 0));
+        }
+        
     }
 
 }

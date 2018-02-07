@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
     public Vector3 Force;
+    public bool Launched;
 
     private Rigidbody _ballRigidbody;
     private AudioSource _audioSource;
@@ -21,6 +22,7 @@ public class Ball : MonoBehaviour {
 
     public void Launch(Vector3 force)
     {
+        Launched = true;
         _ballRigidbody.useGravity = true;
         _ballRigidbody.AddForce(force, ForceMode.Impulse);
         _audioSource.Play();
